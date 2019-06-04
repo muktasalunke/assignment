@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-navbar.component.scss']
 })
 export class AdminNavbarComponent implements OnInit {
-
+  userName;
   constructor(private router:Router) { }
 
   ngOnInit() {
+    this.userName=localStorage.getItem("UserName");
   }
   logOut()
   {
