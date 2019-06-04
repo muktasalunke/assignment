@@ -1,0 +1,16 @@
+<!-- <app-navbar></app-navbar> -->
+<mat-card>
+  <mat-card-content>
+    <form>
+      <mat-form-field >
+        <input type="text" matInput placeholder=""  [matAutocomplete]="auto"  >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" (click)="getSelected(option.component)" [value]="option.name">
+            <span>{{option.name}}</span> |
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button mat-raised-button color="primary"  style="margin-left:10%" (click)="loadComponent()">Load Component</button>
+    </form>
+  </mat-card-content>
+</mat-card>

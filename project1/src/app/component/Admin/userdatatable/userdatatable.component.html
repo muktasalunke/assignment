@@ -1,0 +1,38 @@
+<mat-card>
+    <div style="font-size: 150%"><b>User Data</b></div><br> 
+  <form>
+      <mat-spinner *ngIf="loading" [diameter]="50"></mat-spinner>
+      <mat-form-field>  
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">  
+      </mat-form-field>  
+
+     <mat-table [dataSource]="data" class="mat-elevation-z8" matSort (matSortChange)="matSortChange($event)">
+      <ng-container matColumnDef="SrNo">
+        <mat-header-cell *matHeaderCellDef > <b>SrNo</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element;let i=index"> {{i+1}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="empName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > <b> Name</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.employee_name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="empSalary">
+        <mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before"> <b>Salary </b></mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.employee_salary}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="empAge">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Age</b> </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.employee_age}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></mat-row>
+    </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"  [pageSize]="5" [length]="100" (page)="page($event)" showFirstLastButtons></mat-paginator>
+<!-- hidePageSize="true" -->
+
+
+

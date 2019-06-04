@@ -1,0 +1,48 @@
+<div class="example-container">
+  <h2>List 1</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    id="todoList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListEntered)="dropEnter($event)"
+    (cdkDropListExited)="dropExit($event)"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag 
+    id="todoList"
+    (cdkDragStarted)="dragStarted($event)"
+    (cdkDragDropped)="dragDrop($event)"
+    (cdkDragEnded)="dragEnded($event)"
+    (cdkDragEntered)="DragEntered($event)"
+    (cdkDragExited)="DragExited($event)"
+    (cdkDragMoved)="DragMoved($event)"
+    (cdkDragReleased)="DragReleased($event)">{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>List 2</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    id="doneList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListEntered)="dropEnter($event)"
+    (cdkDropListExited)="dropExit($event)"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag 
+    id="doneList"
+    (cdkDragEnded)="dragEnded($event)"
+    (cdkDragEntered)="DragEntered($event)"
+    (cdkDragExited)="DragExited($event)"
+    (cdkDragMoved)="DragMoved($event)"
+    (cdkDragStarted)="dragStarted($event)"
+    (cdkDragReleased)="DragReleased($event)">{{item}}</div>
+  </div>
+</div>
