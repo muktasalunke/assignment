@@ -52,8 +52,8 @@
                     </div>
     
                     <div fxLayout="row" fxLayoutAlign="end">
-                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails()">Details</button>
-                        <button type="button" mat-raised-button *ngIf="isExpansion" (click)="onClickCollaspe()">Collapse</button>
+                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails(user.id)">Details</button>
+                        <button type="button" mat-raised-button *ngIf="isExpansion" (click)="onClickCollaspe(user.id)">Collapse</button>
                     </div>
                 </div>
 
