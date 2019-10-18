@@ -6,6 +6,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoadComponentComponent } from './load-component/load-component.component';
 import { ImageComponent } from './image/image.component';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
+import { FormComponent } from './form/form.component';
+import { RenderdynamicformComponent } from '../DynamicComponent/renderdynamicform/renderdynamicform.component';
+import { DateformatComponent } from '../dateformat/dateformat.component';
 
 const routes: Routes = [
   {
@@ -34,9 +37,21 @@ const routes: Routes = [
       component:LoadComponentComponent
     },
     {
+      path:'form',
+      component:FormComponent
+    },
+    {
       path:'dragdrop',
       component:DragdropComponent
-    }]
+    },
+    {
+      path:'dynamicform',
+      component:RenderdynamicformComponent
+    },
+    {
+      path:'date',
+      component:DateformatComponent 
+    }    ]
   }  
 ];
 

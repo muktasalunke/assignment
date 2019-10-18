@@ -2,7 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css'; 
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import '~@mat-datetimepicker/core/datetimepicker/datetimepicker-theme.scss';
 
+// Using the $theme variable from the pre-built theme you can call the theming function
+// @include mat-datetimepicker-theme($theme);
 body, html {
     height: 100%;
     margin: 0 auto;
@@ -36,3 +40,27 @@ section {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// body {
+//     margin: 0;
+//     }
+    .demo-full-width {
+    width: 100%;
+    }
+    .margin-top {
+    margin-top: 15px;
+    }
+//     .margin-left {
+//     margin-left: 10px;
+//     }
+//     .radio-label-padding {
+//     padding-right: 10px;
+//     color: grey;
+//     }
+//     .form {
+//     margin-left: 10px;
+//     border: 2px solid lightgray;
+//     width: 600px;
+//     padding-left: 5px;
+//     margin-top: 10px;
+//     }

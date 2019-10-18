@@ -11,4 +11,8 @@ export class HttpService {
   {
     return this.http.get(url);
   }
+  get(url,data)
+  {
+    return this.http.get(url,data);
+  }
 }

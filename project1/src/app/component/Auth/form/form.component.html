@@ -1,0 +1,140 @@
+
+<mat-card>
+<mat-card-content>
+<form class="example-form" [formGroup]="formdata" autocomplete="off">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Select Autocomplete value"  aria-label="Number" matInput formControlName="autocomplete" [matAutocomplete]="auto" required>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)" position="auto">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="formdata.controls.autocomplete.errors?.required">Please select value</mat-error>
+  </mat-form-field>
+
+  <mat-checkbox color="primary" checked="true" aria-required="true" (change)="change($event)" formControlName="checkbox">Check me!</mat-checkbox><br>
+
+  <mat-form-field>
+      <input matInput [matDatepicker]="myDatepicker" placeholder="choose a Date"  (dateChange)="dateChange($event)" formControlName="datePickerDate" >
+      <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+      <mat-error *ngIf="formdata.controls.datePickerDate.errors?.required">Enter Text Input</mat-error>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput type="text" placeholder=" Text Input" formControlName="text" required>
+        <mat-error *ngIf="formdata.controls.text.errors?.required">Enter Text Input</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput #phone  minlength="10" maxlength="10" placeholder=" Number Input" formControlName="number" required>
+        <mat-error *ngIf="formdata.controls.number.errors?.required">Enter number Input</mat-error>
+        <mat-error *ngIf="formdata.controls.number.errors?.minlength">minlength 10 digit.</mat-error>
+        <!-- <mat-error *ngIf="formdata.controls.number.errors?.maxlength">maxlength 0 digit.</mat-error> -->
+      </mat-form-field><br>
+    
+      <mat-form-field>
+        <input matInput type="email" placeholder=" Email Input" formControlName="email" required>
+        <mat-error *ngIf="formdata.controls.email.errors?.required">Enter Email Input</mat-error>
+        <mat-error *ngIf="formdata.controls.email.errors?.email">Enter valid Email </mat-error>
+      </mat-form-field><br>
+    
+      <mat-form-field>
+        <input matInput type="password" placeholder=" password Input" formControlName="password" required>
+        <mat-error *ngIf="formdata.controls.password.errors?.required">Enter password Input</mat-error>
+      </mat-form-field><br>
+    
+      <mat-form-field>
+        <input matInput type="tel" #phone  minlength="6" maxlength="6" placeholder=" Telephone Input" formControlName="tel" required>
+        <mat-error *ngIf="formdata.controls.tel.errors?.required">Enter Telphone Input</mat-error>
+        <mat-error *ngIf="formdata.controls.tel.errors?.minlength">Enter Telphone Input</mat-error>
+      </mat-form-field><br>
+    
+      <mat-form-field>
+        <input matInput type="date" placeholder=" Date Input" formControlName="date" required>
+        <mat-error *ngIf="formdata.controls.date.errors?.required">Enter Date Input</mat-error>
+      </mat-form-field><br>
+
+      <!-- <mat-form-field>
+        <input matInput type="url" placeholder=" Url Input" formControlName="url" required>
+        <mat-error *ngIf="formdata.controls.url.errors?.required">Enter Url Input</mat-error>
+      </mat-form-field><br>
+    
+      <mat-form-field>
+        <input matInput type="datetime" placeholder=" Datetime Input" formControlName="datetime" required>
+        <mat-error *ngIf="formdata.controls.datetime.errors?.required">Enter DateTime Input</mat-error>
+      </mat-form-field><br> -->
+    
+      <mat-form-field>
+        <input matInput type="datetime-local" placeholder=" Date  datetime-local Input" formControlName="local" required>
+        <mat-error *ngIf="formdata.controls.local.errors?.required">Enter DateTime local Input</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput type="month" placeholder=" Month Input" formControlName="month" required>
+        <mat-error *ngIf="formdata.controls.month.errors?.required">Enter Month Input</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput type="week" placeholder=" Week Input" formControlName="week" required>
+        <mat-error *ngIf="formdata.controls.week.errors?.required">Enter Week Input</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput type="time" placeholder=" Time Input" formControlName="time" required>
+        <mat-error *ngIf="formdata.controls.time.errors?.required">Enter Time Input</mat-error>
+      </mat-form-field><br>
+
+      <mat-form-field>
+          <input matInput type="search" placeholder=" search Input" formControlName="search" required>
+          <mat-error *ngIf="formdata.controls.search.errors?.required">Enter Search Input</mat-error>
+        </mat-form-field><br>
+
+      <mat-form-field>
+        <input matInput type="color" placeholder="color Input" formControlName="color" required>
+        <mat-error *ngIf="formdata.controls.color.errors?.required">Enter color Input</mat-error>
+      </mat-form-field><br>
+
+
+      <mat-form-field>
+        <textarea matInput placeholder="Textarea" formControlName="textarea" required></textarea>
+        <mat-error *ngIf="formdata.controls.textarea.errors?.required">Enter TextArea Input</mat-error>
+      </mat-form-field><br>
+    
+      <mat-radio-group aria-label="Select an option" (change)="changeRadio($event)" formControlName="radio" value="option 1" >
+          <mat-radio-button  value="Option 1" checked="true">Option 1</mat-radio-button>
+          <mat-radio-button value="Option 2">Option 2</mat-radio-button>
+          <!-- <mat-error *ngIf="formdata.controls.radio.errors?.required">Select Radio button</mat-error> -->
+        </mat-radio-group><br>
+
+        <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <mat-select (selectionChange)="selectionChange($event)" formControlName="select">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formdata.controls.select.errors?.required"> Select Input</mat-error>
+          </mat-form-field><br>
+          <mat-form-field>
+              <mat-label>Toppings</mat-label>
+              <mat-select formControlName="toppings" multiple>
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+              </mat-select>
+            </mat-form-field><br>
+          <mat-slide-toggle checked="true" (change)="changeToggle($event)" formControlName="toggle">Slide me!</mat-slide-toggle><br>
+
+          
+        <mat-form-field>
+          <mat-label>Favorite food</mat-label>
+          <mat-select (selectionChange)="selectionChange($event)" formControlName="datefor">
+            <mat-option *ngFor="let date of DateFormat" [value]="date.value">
+              {{date.value}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formdata.controls.date.errors?.required"> Select Input</mat-error>
+        </mat-form-field><br>
+          <button mat-raised-button color="primary" (click)="submit(formdata.value)">Submit</button>
+</form>
+</mat-card-content>
+</mat-card>

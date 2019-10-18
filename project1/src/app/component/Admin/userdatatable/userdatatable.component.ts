@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from 'src/app/shared/http.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Constant } from 'src/app/utils/constant';
+import { CommonService } from 'src/app/shared/common.service';
 export interface tableData
 {
   empName:String;
@@ -16,7 +17,7 @@ export interface tableData
 })
 export class UserdatatableComponent implements OnInit {
 
-  constructor(private httpservice:HttpService) { }
+  constructor(private httpservice:HttpService,private commonService:CommonService) { }
   displayedColumns: string[] = ['SrNo', 'empName', 'empSalary', 'empAge'];
   data:MatTableDataSource<tableData>
   tableData=[];
@@ -40,6 +41,8 @@ export class UserdatatableComponent implements OnInit {
           {
             alert("Internal Server Error")
           });
+          
+          console.log(this.commonService.getUserInfo()) 
   }
   applyFilter(filterValue: string) {  
     this.data.filter = filterValue.trim().toLowerCase();  

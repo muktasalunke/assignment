@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/shared/common.service';
 
 @Component({
   selector: 'app-admin-navbar',
@@ -8,10 +9,10 @@ import { Router } from '@angular/router';
 })
 export class AdminNavbarComponent implements OnInit {
   userName;
-  constructor(private router:Router) { }
+  constructor(private router:Router,private commonService:CommonService) { }
 
   ngOnInit() {
-    this.userName=localStorage.getItem("UserName");
+   this.userName=this.commonService.getUserInfo();
   }
   logOut()
   {

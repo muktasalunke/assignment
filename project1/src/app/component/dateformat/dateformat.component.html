@@ -1,0 +1,45 @@
+<mat-card>
+  <form [formGroup]="formdata">
+    <mat-form-field>
+  <mat-label>Select Date Format</mat-label>
+  <mat-select (selectionChange)="selectionChange($event)" formControlName="date" autofilled="true">
+    <mat-option *ngFor="let date of DateFormat"  [value]="date.value">
+      {{date.value}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="formdata.controls.date.errors?.required"> Select Date Format</mat-error>
+</mat-form-field><br>
+<mat-form-field>
+    <mat-label>Select Time Format</mat-label>
+    <mat-select (selectionChange)="selectionChange($event)" formControlName="time">
+      <mat-option *ngFor="let time of timeFormat" [value]="time.value">
+        {{time.value}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formdata.controls.time.errors?.required"> Select Date Format</mat-error>
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="URl" formControlName="websiteUrl" autocomplete="off" required/>
+    <mat-error *ngIf="formdata.controls.websiteUrl.errors?.required"> Url required</mat-error>
+    <mat-error *ngIf="formdata.controls.websiteUrl.errors?.validUrl"> URl starts with only https: and ends With .com </mat-error>
+  </mat-form-field><br>
+
+  <mat-radio-group  (change)="changeRadio($event)" formControlName="radio"  >
+    <mat-radio-button name="options" value="auto" checked="true">Auto</mat-radio-button>
+    <mat-radio-button  name="options" value="custom">Custom</mat-radio-button>
+    <mat-error *ngIf="formdata.controls.radio.errors?.required">Select Radio button</mat-error>
+  </mat-radio-group><br>
+  <div *ngIf="isSelected=='custom'">
+    <mat-form-field style="margin-inline-end: 5%">
+      <input matInput placeholder="Input 1" formControlName="input1" autocomplete="off" required/>
+      <mat-error *ngIf="formdata.controls.input1.errors?.required"> input1 required</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <input matInput placeholder="Input 2" formControlName="input2" autocomplete="off" required/>
+      <mat-error *ngIf="formdata.controls.input2.errors?.required"> input2 required</mat-error>
+    </mat-form-field>
+  </div>
+  <br>
+  <button mat-raised-button color="primary" [disabled]="formdata.invalid" (click)="submit(formdata.value)">Submit</button>
+</form>
+</mat-card>

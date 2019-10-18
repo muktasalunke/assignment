@@ -13,6 +13,7 @@ import { UserDataComponent } from './user-data/user-data.component';
 import { StudentDataComponent } from './student-data/student-data.component';
 import { ImageComponent } from './image/image.component';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,15 @@ import { DragdropComponent } from './dragdrop/dragdrop.component';
     UserDataComponent,
     StudentDataComponent,
     ImageComponent,
-    DragdropComponent],
+    DragdropComponent,
+    FormComponent],
 
   imports: [
     CommonModule,
     AuthRoutingModule,
     MaterialModule
   ],
-  bootstrap:[NavbarComponent]
+  bootstrap:[NavbarComponent],
+  entryComponents:[HomeComponent,UserDataComponent,StudentDataComponent,]
 })
 export class AuthModule { }

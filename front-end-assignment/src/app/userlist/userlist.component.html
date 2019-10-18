@@ -1,0 +1,79 @@
+<div>
+    <!-- Toolbar -->
+    <div class="toolbar" >
+    
+        <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
+    
+        <div class="search" fxLayout="row" fxLayoutAlign="center center">
+            <input>
+            <mat-icon>search</mat-icon>
+        </div>
+    
+        </div>
+    
+        <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
+    
+        <div class="search" fxLayout="row" fxLayoutAlign="center center">
+            <input>
+            <mat-icon>search</mat-icon>
+        </div>
+    
+        </div>
+    
+    </div>
+    <!-- /Toolbar -->
+    
+    <!-- CONTENT -->
+    <div class="content p-24">
+    
+        <div class="result-info" fxLayout="row" fxLayoutAlign="start center">
+    
+            <span class="result-count h3 secondary-text">
+                <span class="ml-4"> Total Results:-</span>
+                <span>{{userlist.length}}</span>
+            </span>
+            
+        </div>
+    
+        <!-- SEARCH LIST-->
+        <div class="search-list" fxLayout="column">
+    
+            <div  class="contact" *ngFor="let user of userlist">
+    
+                <div fxLayout="row" fxLayoutAlign="start center">
+    
+                    <div class="avatar-wrapper" fxFlex="0 1 auto" fxLayoutAlign="center center">
+                        <img class="avatar" [src]="user.avatar_url" [alt]="login"/>
+                    </div>
+    
+                    <div class="pr-4" fxFlex fxLayout="column" fxLayoutAlign="center start">
+                        <div class="name">{{user.login}}</div>
+                        <div>Profile Url:{{user.url}}</div>
+                    </div>
+    
+                    <div fxLayout="row" fxLayoutAlign="end">
+                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails()">Details</button>
+                        <button type="button" mat-raised-button *ngIf="isExpansion" (click)="onClickCollaspe()">Collapse</button>
+                    </div>
+                </div>
+
+                <div *ngIf="isExpansion" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20">
+                    <label>Data Label : Data Value</label>
+                    <label>Data Label : Data Value1</label>
+                    <label>Data Label : Data Value1</label>
+                </div>
+    
+            </div>
+            <mat-paginator [length]="userlist.length"
+              [pageSize]="10"
+              [pageSizeOptions]="[5,10,15,20]"
+              (page)="pageEvent = $event">
+            </mat-paginator>
+    
+        </div>
+        <!-- / SEARCH LIST-->
+    
+    <!-- / CONTENT -->
+    
+    </div>
+    
