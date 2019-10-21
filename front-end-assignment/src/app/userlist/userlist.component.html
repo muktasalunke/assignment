@@ -7,7 +7,7 @@
             <div class="search" fxLayout="column" fxLayoutAlign="center center">
 
                 <mat-form-field class="mr_10">
-                    <input matInput (keyup)="applyFilter()" [(ngModel)]="searchKey" placeholder="Search">
+                    <input matInput (keyup)="applyFilter()" [(ngModel)]="searchKey">
                     <button type="button" mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
                         <mat-icon>close</mat-icon>
                     </button>
