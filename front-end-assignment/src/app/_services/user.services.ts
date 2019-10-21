@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class UsersService implements Resolve<any>
 {
     users: any;
+    search:any;
     onUsersChanged: BehaviorSubject<any>;
-    filters;
+    filters = {                
+        "page": 0,
+        "per_page": '',            
+        "q": "",                   
+        "direction": "asc",
+    };
+    onSearchChanged: any;
     /**
      * Constructor
      *
@@ -34,7 +42,7 @@ export class UsersService implements Resolve<any>
         return new Promise((resolve, reject) => {
 
             Promise.all([
-                this.getUsers()
+                this.getUsers(this.filters)
             ]).then(
                 ([files]) => {
 
@@ -51,10 +59,11 @@ export class UsersService implements Resolve<any>
      *
      * @returns {Promise<any>}
      */
-    getUsers(): Promise<any>
+    getUsers(filters): Promise<any>
     {
+        // http://localhost:8000/api/list/users?
         return new Promise((resolve, reject) => {
-            this._httpClient.get(`https://api.github.com/users`)
+            this._httpClient.get(`https://api.github.com/users`,{params : filters})
                 .subscribe((response: any) => {
                     this.users = response;
                     this.onUsersChanged.next(this.users);
@@ -63,8 +72,30 @@ export class UsersService implements Resolve<any>
         });
     }
 
+    getSearchedUsers(filters:any):Observable<any>
+    {
+        let params = new HttpParams();
+        filters.forEach(param => {
+            let key = Object.keys(param)[0];
+            let value = param[key];
+            if(value){
+            params = params.append(key, value.toString());
+            }
+        });
+
+        return this._httpClient.get<any>(`https://api.github.com/search/users`, { params: params })
+        // .pipe(catchError(this.errorHandler));
+    }
+
+    getDetailsList(name:any):Observable<any>
+    {
+         return this._httpClient.get<any>(`https​:​//api.github.com/users/${name}/repos`)
+        //  .pipe(catchError(this.errorHandler));
+    }
+
     /** HANDLE HTTP ERROR */
     errorHandler(error: HttpErrorResponse){
-     return Observable.throw(error.message);
+        return Observable.throw(error.message);
     }
+    
 }

@@ -19,7 +19,7 @@ export class CommonUtils
         //Pagination Array
         if(paginationArray.pageIndex>=0 && paginationArray.pageSize>0){
             filterJson['page']  = paginationArray.pageIndex == 0 ? 1 : paginationArray.pageIndex + 1; 
-            filterJson['limit'] = paginationArray.pageSize;             
+            filterJson['per_page'] = paginationArray.pageSize;             
         }
 
         //Form Array

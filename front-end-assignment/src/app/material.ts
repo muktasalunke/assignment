@@ -1,10 +1,11 @@
 
 import { NgModule } from '@angular/core';
 
-import { MatIconModule, MatButtonModule, MatPaginatorModule, 
-         MatExpansionModule} from '@angular/material';
+import { MatIconModule, MatButtonModule, MatPaginatorModule,MatFormFieldModule,MatSelectModule, 
+        MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -13,7 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
         FlexLayoutModule,
         HttpClientModule,
         MatPaginatorModule,
-        MatExpansionModule
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule
     ],
     exports: [
         MatIconModule,
@@ -21,7 +26,11 @@ import { HttpClientModule } from '@angular/common/http';
         FlexLayoutModule,
         HttpClientModule,
         MatPaginatorModule,
-        MatExpansionModule
+        MatFormFieldModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule
     ],
     declarations: []
 })

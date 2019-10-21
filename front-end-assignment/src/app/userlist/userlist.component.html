@@ -2,23 +2,40 @@
     <!-- Toolbar -->
     <div class="toolbar" >
     
-        <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
-    
-        <div class="search" fxLayout="row" fxLayoutAlign="center center">
-            <input>
-            <mat-icon>search</mat-icon>
-        </div>
-    
-        </div>
-    
-        <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
-    
-        <div class="search" fxLayout="row" fxLayoutAlign="center center">
-            <input>
-            <mat-icon>search</mat-icon>
-        </div>
-    
-        </div>
+        <!-- <form  name="filterForm" [formGroup]="filterForm"> -->
+
+            <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
+        
+                <div class="search" fxLayout="row" fxLayoutAlign="center center">
+
+                    <mat-form-field>
+                        <mat-select (selectionChange)="selectionChange($event)">
+                            <mat-option value="asc">Sort By Name</mat-option>
+                            <mat-option value="desc">Sort By Descending</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                
+                </div>
+        
+            </div>
+        
+            <div class="search-wrapper" fxLayout="column" fxLayoutAlign="center center">
+        
+                <div class="search" fxLayout="column" fxLayoutAlign="center center">
+
+                    <mat-form-field class="mr_10">
+                        <input matInput (keyup)="applyFilter()" [(ngModel)]="searchKey" placeholder="Search">
+                        <button type="button" mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-icon>search</mat-icon> -->
+                    </mat-form-field>
+                
+                </div>
+        
+            </div>
+
+        <!-- </form> -->
     
     </div>
     <!-- /Toolbar -->
@@ -30,15 +47,15 @@
     
             <span class="result-count h3 secondary-text">
                 <span class="ml-4"> Total Results:-</span>
-                <span>{{userlist.length}}</span>
+                <span>{{total_count}}</span>
             </span>
             
         </div>
     
-        <!-- SEARCH LIST-->
+        <!-- SEARCH LIST -->
         <div class="search-list" fxLayout="column">
     
-            <div  class="contact" *ngFor="let user of userlist">
+            <div  class="search" *ngFor="let user of userlist">
     
                 <div fxLayout="row" fxLayoutAlign="start center">
     
@@ -52,9 +69,10 @@
                     </div>
     
                     <div fxLayout="row" fxLayoutAlign="end">
-                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails(user.id)">Details</button>
+                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails(user.login)">Details</button>
                         <button type="button" mat-raised-button *ngIf="isExpansion" (click)="onClickCollaspe(user.id)">Collapse</button>
                     </div>
+
                 </div>
 
                 <div *ngIf="isExpansion" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20">
@@ -64,15 +82,15 @@
                 </div>
     
             </div>
-            <mat-paginator [length]="userlist.length"
-              [pageSize]="10"
+            <mat-paginator [length]="total_count"
+              [pageSize]="pageSize"
               [pageSizeOptions]="[5,10,15,20]"
-              (page)="pageEvent = $event">
+              (page)="getNextPrevious($event)">
             </mat-paginator>
     
         </div>
         <!-- / SEARCH LIST-->
-    
+
     <!-- / CONTENT -->
     
     </div>
