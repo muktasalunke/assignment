@@ -6,8 +6,7 @@ import { UsersService } from './_services/user.services';
 const routes: Routes = [
   {
     path : '',
-    component : UserlistComponent,
-    resolve : {user : UsersService}
+    component : UserlistComponent
   }
 ];
 
