@@ -4,7 +4,7 @@
     
         <!-- <form  name="filterForm" [formGroup]="filterForm"> -->
 
-            <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
+            <!-- <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="center center">
         
                 <div class="search" fxLayout="row" fxLayoutAlign="center center">
 
@@ -17,7 +17,7 @@
                 
                 </div>
         
-            </div>
+            </div> -->
         
             <div class="search-wrapper" fxLayout="column" fxLayoutAlign="center center">
         
@@ -69,16 +69,20 @@
                     </div>
     
                     <div fxLayout="row" fxLayoutAlign="end">
-                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails(user.login)">Details</button>
-                        <button type="button" mat-raised-button *ngIf="isExpansion" (click)="onClickCollaspe(user.id)">Collapse</button>
+                        <button type="button" mat-raised-button *ngIf="!isExpansion" (click)="onClickDetails(user.repos_url,user.id)">Details</button>
+                        <button type="button" mat-raised-button *ngIf="isExpansion && user.id == id" (click)="onClickCollaspe(user.id)">Collapse</button>
                     </div>
 
                 </div>
 
-                <div *ngIf="isExpansion" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20">
-                    <label>Data Label : Data Value</label>
-                    <label>Data Label : Data Value1</label>
-                    <label>Data Label : Data Value1</label>
+                <div *ngIf="isExpansion && user.id == id" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20">
+                    <div  *ngFor="let repository of repositorylist" fxLayout="column" fxLayoutAlign="start center">
+                            <label>Repository Name : {{repository.name}}</label>
+                            <label>Language : {{repository.language}}</label>
+                            <label>Open issues count : {{repository.open_issues_count}}</label>
+                            <label>Followers  : {{repository.watchers}}</label>
+                            <div class="sep"></div>
+                    </div>
                 </div>
     
             </div>

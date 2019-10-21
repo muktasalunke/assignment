@@ -84,13 +84,11 @@ export class UsersService implements Resolve<any>
         });
 
         return this._httpClient.get<any>(`https://api.github.com/search/users`, { params: params })
-        // .pipe(catchError(this.errorHandler));
     }
 
-    getDetailsList(name:any):Observable<any>
+    getDetailsList(url:any):Observable<any>
     {
-         return this._httpClient.get<any>(`https​:​//api.github.com/users/${name}/repos`)
-        //  .pipe(catchError(this.errorHandler));
+         return this._httpClient.get<any>(url)
     }
 
     /** HANDLE HTTP ERROR */

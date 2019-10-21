@@ -89,6 +89,12 @@
                 white-space: nowrap;
                 text-overflow: ellipsis;
             }
+
+            .sep{
+                border-top: solid 1px #ddd;
+                margin:24px -24px;
+            }
+        
         }
     }
 

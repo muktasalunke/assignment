@@ -19,6 +19,8 @@ export class UserlistComponent implements OnInit {
   public filterParams: any={};
   public searchKey:string = '';
   public total_count:number = 0;
+  public repositorylist:any = [];
+  public id:number = 0;
 
   @ViewChild(MatPaginator, {static: true})
   paginator: MatPaginator;
@@ -33,7 +35,6 @@ export class UserlistComponent implements OnInit {
   length: number = 0;
   pageSize: number = 10;
   page: number = 1;
-  sortColumn: string;
   sortDirection: string;
 
   // Private
@@ -131,18 +132,21 @@ export class UserlistComponent implements OnInit {
     this.getSearchList();
   }
 
-  onClickDetails(name:string){
+  onClickDetails(url:string, id :number){
+    this.id = id;
     this.isExpansion = true;
-    this.getDetailList(name);
+    this.getDetailList(url);
   }
 
   onClickCollaspe(){
+    this.id = 0;
     this.isExpansion = false
   }
 
-  getDetailList(name){
-    this._usersService.getDetailsList(name)
+  getDetailList(url){
+    this._usersService.getDetailsList(url)
       .subscribe(response => {
+        this.repositorylist = response;
         console.log(response);
       });
   }
